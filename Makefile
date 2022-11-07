@@ -14,3 +14,9 @@ clean:
 
 run:
 	go run main.go
+
+client:
+	go run cmd/client/main.go -address 0.0.0.0:3000
+
+server:
+	go run cmd/server/main.go -port 3000
