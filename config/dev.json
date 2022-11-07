@@ -1,0 +1,4 @@
+{
+    "tokenDuration": "10",
+    "jwtSecretKey": "randomKey"
+}

@@ -4,14 +4,19 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"grpc-go-poc/helper"
 	"grpc-go-poc/pb"
 	"grpc-go-poc/service"
 	"log"
 	"net"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
+
+var tokenDuration = 10 * time.Second
+var secretKey = "randomkey"
 
 func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
 	log.Println("unary interceptor called: ", info.FullMethod)
@@ -26,6 +31,11 @@ func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServ
 	log.Println("Authorization token in request: ", token)
 
 	// Parse and validate token
+	_, err = helper.Verify(token)
+	if err != nil {
+		fmt.Println("Invalid token: ", err)
+		return
+	}
 
 	return handler(ctx, req)
 }

@@ -36,7 +36,7 @@ func main() {
 	defer cancel()
 
 	md := metadata.New(map[string]string{
-		"Authorization": "shdlakdk3h4ui23h4iu",
+		"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njc4MjUwMzF9.J3ZBRHw3J9aq4wqt3tuy-iFSvO6Ts4XAfUkrDOzNVEc",
 	})
 	ctx = metadata.NewOutgoingContext(ctx, md)
 
