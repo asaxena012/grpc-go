@@ -8,6 +8,7 @@ import (
 
 // Server that provides laptop services
 type LaptopServer struct {
+	pb.UnimplementedLaptopServiceServer
 }
 
 func NewLaptopServer() *LaptopServer {
