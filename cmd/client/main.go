@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 func main() {
@@ -33,6 +34,11 @@ func main() {
 	// Timeout
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+
+	md := metadata.New(map[string]string{
+		"Authorization": "shdlakdk3h4ui23h4iu",
+	})
+	ctx = metadata.NewOutgoingContext(ctx, md)
 
 	res, err := laptopClient.CreateLaptop(ctx, &req)
 	if err != nil {
